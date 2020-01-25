@@ -1,0 +1,12 @@
+isbn-1 2 30.0
+isbn-1 3 10.0
+isbn-1 2 30.0
+isbn-2 3 10.0
+isbn-2 2 30.0
+isbn-3 3 10.0
+isbn-3 2 30.0
+isbn-3 3 10.0
+isbn-3 2 30.0
+isbn-4 3 10.0
+isbn-4 2 30.0
+isbn-4 3 10.0
