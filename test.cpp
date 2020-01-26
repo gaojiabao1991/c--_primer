@@ -13,22 +13,26 @@ string sa[10];
 int ia[10];
 
 int main() {
-  string sa2[10]={};
-  int ia2[10]={};
+  int ia[3][4];
 
-  for (auto s : sa) {
-    cout << s << endl;
+  int i = 0;
+  for (auto &row : ia) {
+    for (auto &e : row) {
+      e = i;
+      i++;
+    }
   }
 
-  for (auto s : ia) {
-    cout << s << endl;
+  for (auto &row : ia) {
+    for (auto e : row) {
+      cout << e << endl;
+    }
   }
 
-  for (auto s : sa2) {
-    cout << s << endl;
-  }
+  // int(*p)[4] = ia;
+  // cout << (*p)[2] << endl;
+  // cout << *ia <<endl;
 
-  for (auto s : ia2) {
-    cout << s << endl;
-  }
+  int(*p)[4] = &ia[2];
+  cout << (*p)[0] << endl;
 }
