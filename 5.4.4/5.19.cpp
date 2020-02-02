@@ -13,6 +13,11 @@ using std::string;
 using std::vector;
 
 int main() {
-    int j[] = {0, 2};
-    cout << (end(j) - begin(j)) << endl;
+    do {
+        cout << ("input two string") << endl;
+        string a, b;
+        cin >> a >> b;
+        if (b.size() < a.size()) a = b;
+        cout << ("the shorter one is : ") << a << endl;
+    } while (true);
 }

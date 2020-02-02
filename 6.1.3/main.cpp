@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "fact.h"
 
 using std::begin;
 using std::cerr;
@@ -13,6 +14,5 @@ using std::string;
 using std::vector;
 
 int main() {
-    int j[] = {0, 2};
-    cout << (end(j) - begin(j)) << endl;
+    cout << (fact(5)) << endl;
 }

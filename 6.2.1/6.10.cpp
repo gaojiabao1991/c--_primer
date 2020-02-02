@@ -12,7 +12,20 @@ using std::endl;
 using std::string;
 using std::vector;
 
+void swap(int *a, int *b) {
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
 int main() {
-    int j[] = {0, 2};
-    cout << (end(j) - begin(j)) << endl;
+    int a = 1, b = 2;
+
+    cout << (a) << endl;
+    cout << (b) << endl;
+    
+    swap(&a, &b);
+
+    cout << (a) << endl;
+    cout << (b) << endl;
 }

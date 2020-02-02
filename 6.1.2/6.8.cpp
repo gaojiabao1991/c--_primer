@@ -1,3 +1,4 @@
+#include "6.8.h"
 #include <cstring>
 #include <iostream>
 #include <string>
@@ -13,6 +14,13 @@ using std::string;
 using std::vector;
 
 int main() {
-    int j[] = {0, 2};
-    cout << (end(j) - begin(j)) << endl;
+    cout << (fact(5)) << endl;
+}
+
+int fact(int i) {
+    int ret = 1;
+    while (i > 1) {
+        ret *= i--;
+    }
+    return ret;
 }

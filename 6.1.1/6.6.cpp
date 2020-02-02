@@ -12,7 +12,13 @@ using std::endl;
 using std::string;
 using std::vector;
 
+size_t count_calls() {
+    static size_t cc = 0;
+    return ++cc;
+}
+
 int main() {
-    int j[] = {0, 2};
-    cout << (end(j) - begin(j)) << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << (count_calls()) << endl;
+    }
 }

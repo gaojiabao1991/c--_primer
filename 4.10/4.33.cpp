@@ -13,6 +13,11 @@ using std::string;
 using std::vector;
 
 int main() {
-    int j[] = {0, 2};
-    cout << (end(j) - begin(j)) << endl;
+    int x = 0, y = 0;
+
+    bool c = false;
+    cout << (c ? (++x, ++y) : --x, --y) << endl;
+
+    cout << ("x-> ")<<x <<endl;
+    cout << ("y-> ")<<y <<endl;
 }

@@ -13,6 +13,10 @@ using std::string;
 using std::vector;
 
 int main() {
-    int j[] = {0, 2};
-    cout << (end(j) - begin(j)) << endl;
+    unsigned long ul1 = 3, ul2 = 7;
+
+    cout << (ul1 & ul2) << endl;
+    cout << (ul1 | ul2) << endl;
+    cout << (ul1 && ul2) << endl;
+    cout << (ul1 || ul2) << endl;
 }

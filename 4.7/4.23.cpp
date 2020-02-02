@@ -13,6 +13,7 @@ using std::string;
 using std::vector;
 
 int main() {
-    int j[] = {0, 2};
-    cout << (end(j) - begin(j)) << endl;
+    string s = "word";
+    string p1 = s + (s[s.size() - 1] == 's' ? "" : "s");
+    cout << p1 <<endl;
 }

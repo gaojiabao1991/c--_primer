@@ -13,6 +13,14 @@ using std::string;
 using std::vector;
 
 int main() {
-    int j[] = {0, 2};
-    cout << (end(j) - begin(j)) << endl;
+    int x[10];
+    int *p = x;
+
+    // cout << (x) << endl;
+    // cout << (p) << endl;
+    // cout << (*p) << endl;
+
+    cout << (sizeof(x) / sizeof(*x)) << endl;
+
+    cout << (sizeof(p) / sizeof(*p)) << endl;
 }

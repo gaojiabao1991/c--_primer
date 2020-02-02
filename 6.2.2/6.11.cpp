@@ -12,7 +12,13 @@ using std::endl;
 using std::string;
 using std::vector;
 
+void reset(int &i) {
+    i = 0;
+}
+
 int main() {
-    int j[] = {0, 2};
-    cout << (end(j) - begin(j)) << endl;
+    int a = 42;
+    cout << (a) << endl;
+    reset(a);
+    cout << (a) << endl;
 }
