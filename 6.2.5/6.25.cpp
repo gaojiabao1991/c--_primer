@@ -12,13 +12,10 @@ using std::endl;
 using std::string;
 using std::vector;
 
-int getLarger(int a, const int *b) {
-    if (a > *b) return a;
-    return *b;
-}
-
-int main() {
-    int a = 1, b = 2, c = 3, d = 4;
-    cout << (getLarger(a, &b)) << endl;
-    cout << (getLarger(d, &c)) << endl;
+int main(int argc, char **argv) {
+    string s = "";
+    for (int i = 1; i < argc; i++) {
+        s += argv[i];
+    }
+    cout << (s) << endl;
 }

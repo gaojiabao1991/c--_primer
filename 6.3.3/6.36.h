@@ -9,16 +9,16 @@ using std::cin;
 using std::cout;
 using std::end;
 using std::endl;
+using std::initializer_list;
 using std::string;
 using std::vector;
 
-int getLarger(int a, const int *b) {
-    if (a > *b) return a;
-    return *b;
-}
+string (*func1())[10];
 
-int main() {
-    int a = 1, b = 2, c = 3, d = 4;
-    cout << (getLarger(a, &b)) << endl;
-    cout << (getLarger(d, &c)) << endl;
-}
+using arr10 = string[10];
+arr10 *func2();
+
+auto func3() -> string (*)[10];
+
+string tmp[10] = {};
+decltype(tmp) *func4();
