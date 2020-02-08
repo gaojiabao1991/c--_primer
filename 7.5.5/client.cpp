@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Window_mgr.h"
+#include "Sales_data.h"
 
 using std::begin;
 using std::cerr;
@@ -17,10 +17,8 @@ using std::string;
 using std::vector;
 
 int main(int argc, char **argv) {
-    Screen s(5, 5, '.');
-    Window_mgr mgr(s);
-    mgr.get(0).display();
-    mgr.clear(0);
-    mgr.get(0).display();
-
+    Sales_data item = {"No.123", 25, 15.99};
+    cout << (item.isbn) << endl;
+    cout << (item.sold) << endl;
+    cout << (item.revenue) << endl;
 }

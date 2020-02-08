@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Window_mgr.h"
 
 using std::begin;
 using std::cerr;
@@ -16,11 +15,15 @@ using std::ostream;
 using std::string;
 using std::vector;
 
-int main(int argc, char **argv) {
-    Screen s(5, 5, '.');
-    Window_mgr mgr(s);
-    mgr.get(0).display();
-    mgr.clear(0);
-    mgr.get(0).display();
+class Account {
+   public:
+    static double interestRate;
+    static void setRate(double rate) { interestRate = rate; }
+    static double getRate() { return interestRate; }
 
-}
+   private:
+    string owner;
+    double amount;
+};
+
+double Account::interestRate = 2.0;

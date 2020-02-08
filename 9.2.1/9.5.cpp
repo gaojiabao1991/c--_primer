@@ -28,27 +28,20 @@ using std::ofstream;
 using std::ostream;
 using std::ostringstream;
 using std::string;
-using std::swap;
 using std::vector;
 
-int main(int argc, char **argv) {
-    // array<int, 10> a = {1, 2, 3, 4, 5};
-    // a = {2, 3, 4, 5, 6};
-
-    // for (auto &i : a) {
-    //     cout << (i) << endl;
-    // }
-
-    // int a = 1;
-    // int b = 2;
-    // swap(a, b);
-
-    // cout << (a) << endl;
-    // cout << (b) << endl;
-
-    list<int> l = {1, 2, 3, 4, 5};
-    l.assign({2, 3, 4});
-    for (auto &i : l) {
-        cout << (i) << endl;
+vector<int>::iterator find(vector<int>::iterator start, vector<int>::iterator end, int v) {
+    while (start != end) {
+        if (*start == v) {
+            return start;
+        }
+        start++;
     }
+    return end;
+}
+
+int main(int argc, char **argv) {
+    vector<int> a = {1, 2, 3, 4, 5};
+    cout << *(find(a.begin(), a.end(), 3)) << endl;
+    cout << *(find(a.begin(), a.end(), 6)) << endl;
 }

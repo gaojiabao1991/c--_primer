@@ -28,27 +28,14 @@ using std::ofstream;
 using std::ostream;
 using std::ostringstream;
 using std::string;
-using std::swap;
 using std::vector;
 
 int main(int argc, char **argv) {
-    // array<int, 10> a = {1, 2, 3, 4, 5};
-    // a = {2, 3, 4, 5, 6};
+    vector<int> v1;
+    vector<int> v2(v1);
+    vector<int> v3 = {1, 2, 3};
 
-    // for (auto &i : a) {
-    //     cout << (i) << endl;
-    // }
-
-    // int a = 1;
-    // int b = 2;
-    // swap(a, b);
-
-    // cout << (a) << endl;
-    // cout << (b) << endl;
-
-    list<int> l = {1, 2, 3, 4, 5};
-    l.assign({2, 3, 4});
-    for (auto &i : l) {
-        cout << (i) << endl;
-    }
+    vector<int> v4(v3.begin(), v3.end());
+    vector<int> v5(10);
+    vector<int> v6(20, -1);
 }

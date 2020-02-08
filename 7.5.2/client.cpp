@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Window_mgr.h"
+#include "Sales_data.h"
 
 using std::begin;
 using std::cerr;
@@ -17,10 +17,15 @@ using std::string;
 using std::vector;
 
 int main(int argc, char **argv) {
-    Screen s(5, 5, '.');
-    Window_mgr mgr(s);
-    mgr.get(0).display();
-    mgr.clear(0);
-    mgr.get(0).display();
+    Sales_data a;
+    print(cout, a);
 
+    Sales_data b("No.123");
+    print(cout, b);
+
+    Sales_data c("No.345", 10, 20.0);
+    print(cout, c);
+
+    Sales_data d(cin);
+    print(cout, d);
 }

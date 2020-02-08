@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Window_mgr.h"
 
 using std::begin;
 using std::cerr;
@@ -16,11 +15,11 @@ using std::ostream;
 using std::string;
 using std::vector;
 
-int main(int argc, char **argv) {
-    Screen s(5, 5, '.');
-    Window_mgr mgr(s);
-    mgr.get(0).display();
-    mgr.clear(0);
-    mgr.get(0).display();
+class Example {
+   public:
+    static constexpr double rate = 6.5;
+    static const int vecSize = 20;
+    static vector<double> vec;
+};
 
-}
+vector<double> Example::vec = vector<double>(5);

@@ -2,7 +2,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Window_mgr.h"
+#include "Account.h"
+#include "Example.h"
 
 using std::begin;
 using std::cerr;
@@ -17,10 +18,14 @@ using std::string;
 using std::vector;
 
 int main(int argc, char **argv) {
-    Screen s(5, 5, '.');
-    Window_mgr mgr(s);
-    mgr.get(0).display();
-    mgr.clear(0);
-    mgr.get(0).display();
+    //Account
+    cout << (Account::interestRate) << endl;
+    Account::setRate(3.0);
+    cout << (Account::interestRate) << endl;
 
+    //Example
+    cout << (Example::rate) << endl;
+    for (auto &d : Example::vec) {
+        cout << (d) << endl;
+    }
 }

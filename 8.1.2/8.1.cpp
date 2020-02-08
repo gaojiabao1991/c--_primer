@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Window_mgr.h"
 
 using std::begin;
 using std::cerr;
@@ -16,11 +15,14 @@ using std::ostream;
 using std::string;
 using std::vector;
 
-int main(int argc, char **argv) {
-    Screen s(5, 5, '.');
-    Window_mgr mgr(s);
-    mgr.get(0).display();
-    mgr.clear(0);
-    mgr.get(0).display();
+istream& print(istream& is) {
+    string s;
+    while (is >> s) {
+        cout << (s) << endl;
+    }
+    is.clear();
+}
 
+int main(int argc, char** argv) {
+    print(cin);
 }

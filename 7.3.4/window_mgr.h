@@ -62,7 +62,7 @@ class Screen {
         return *this;
     }
 
-    Screen& display(ostream& os) {
+    Screen& display(ostream& os = cout) {
         // do_display(os);
         this->do_display(os);
         return *this;
