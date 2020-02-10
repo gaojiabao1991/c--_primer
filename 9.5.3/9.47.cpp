@@ -28,31 +28,26 @@ using std::ofstream;
 using std::ostream;
 using std::ostringstream;
 using std::string;
-using std::swap;
 using std::vector;
 
 int main(int argc, char **argv) {
-    // array<int, 10> a = {1, 2, 3, 4, 5};
-    // a = {2, 3, 4, 5, 6};
+    string s = "ab2c3d7R4E6";
+    string numbers = "01234567890";
+    string::size_type i = 0;
 
-    // for (auto &i : a) {
-    //     cout << (i) << endl;
-    // }
+    //print all number positions
+    while ((i = s.find_first_of(numbers, i)) != string::npos) {
+        cout << (i) << endl;
+        i++;
+    }
 
-    // int a = 1;
-    // int b = 2;
-    // swap(a, b);
+    cout << endl;
+    cout << endl;
 
-    // cout << (a) << endl;
-    // cout << (b) << endl;
-
-    // list<int> l = {1, 2, 3, 4, 5};
-    // l.assign({2, 3, 4});
-    // for (auto &i : l) {
-    //     cout << (i) << endl;
-    // }
-
-    vector<int> a;
-    auto b = a.begin();
-    auto z = b + 1;
+    //print all non-number positions
+    i = 0;
+    while ((i = s.find_first_not_of(numbers, i)) != string::npos) {
+        cout << (i) << endl;
+        i++;
+    }
 }

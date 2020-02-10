@@ -28,31 +28,18 @@ using std::ofstream;
 using std::ostream;
 using std::ostringstream;
 using std::string;
-using std::swap;
 using std::vector;
 
-int main(int argc, char **argv) {
-    // array<int, 10> a = {1, 2, 3, 4, 5};
-    // a = {2, 3, 4, 5, 6};
+int main(int argc, char** argv) {
+    vector<int> v = {};
 
-    // for (auto &i : a) {
-    //     cout << (i) << endl;
-    // }
+    try {
+        cout << (v.at(0)) << endl;  //raise catchable exception
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
 
-    // int a = 1;
-    // int b = 2;
-    // swap(a, b);
-
-    // cout << (a) << endl;
-    // cout << (b) << endl;
-
-    // list<int> l = {1, 2, 3, 4, 5};
-    // l.assign({2, 3, 4});
-    // for (auto &i : l) {
-    //     cout << (i) << endl;
-    // }
-
-    vector<int> a;
-    auto b = a.begin();
-    auto z = b + 1;
+    // cout << (v[0]) << endl; // Segmentation fault (core dumped)
+    // cout << (v.front()) << endl; //Segmentation fault (core dumped)
+    cout << (*(v.begin())) << endl;  //Segmentation fault (core dumped)
 }

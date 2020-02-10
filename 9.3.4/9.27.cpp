@@ -28,31 +28,31 @@ using std::ofstream;
 using std::ostream;
 using std::ostringstream;
 using std::string;
-using std::swap;
 using std::vector;
 
+void print(forward_list<int> l) {
+    for (auto &i : l) {
+        cout << (i) << " ";
+    }
+    cout << endl;
+}
+
 int main(int argc, char **argv) {
-    // array<int, 10> a = {1, 2, 3, 4, 5};
-    // a = {2, 3, 4, 5, 6};
+    int ia[] = {0, 1, 1, 2, 3, 5, 8, 13, 21, 55, 89};
+    forward_list<int> l(begin(ia), end(ia));
+    print(l);
 
-    // for (auto &i : a) {
-    //     cout << (i) << endl;
-    // }
+    forward_list<int>::iterator bb = l.before_begin();
+    forward_list<int>::iterator b = l.begin();
 
-    // int a = 1;
-    // int b = 2;
-    // swap(a, b);
+    while (b != l.end()) {
+        if (*b % 2) {
+            b = l.erase_after(bb);
+        } else {
+            b++;
+            bb++;
+        }
+    }
 
-    // cout << (a) << endl;
-    // cout << (b) << endl;
-
-    // list<int> l = {1, 2, 3, 4, 5};
-    // l.assign({2, 3, 4});
-    // for (auto &i : l) {
-    //     cout << (i) << endl;
-    // }
-
-    vector<int> a;
-    auto b = a.begin();
-    auto z = b + 1;
+    print(l);
 }
