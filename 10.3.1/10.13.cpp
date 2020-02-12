@@ -4,7 +4,6 @@
 #include <deque>
 #include <forward_list>
 #include <fstream>
-#include <functional>
 #include <iostream>
 #include <iterator>
 #include <list>
@@ -31,20 +30,20 @@ using std::list;
 using std::ofstream;
 using std::ostream;
 using std::ostringstream;
+using std::sort;
+using std::stable_sort;
 using std::string;
 using std::vector;
-using namespace std::placeholders;
+
+bool short_than_5(string w) {
+    return w.size() < 5;
+}
 
 int main(int argc, char **argv) {
-    vector<int> v = {1, 2, 5, 3, 6};
-    int threshold = 6;
-    // bool check(int i, int threshold) {
-    //     return i >= threshold;
-    // }
-    auto check = [](int i, int limit) { return i >= limit; };
-    auto check_lambda = [threshold, check](int i) { return check(i, threshold); };
-    auto check_bind = std::bind(check, _1, threshold);
-
-    auto p_larger = std::find_if(v.begin(), v.end(), check_bind);
-    cout << (*p_larger) << endl;
+    vector<string> v = {"java", "number", "c++", "create", "value"};
+    auto after = std::partition(v.begin(), v.end(), short_than_5);
+    while (after < v.end()) {
+        cout << (*after) << endl;
+        after++;
+    }
 }

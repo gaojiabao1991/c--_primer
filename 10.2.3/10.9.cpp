@@ -4,7 +4,6 @@
 #include <deque>
 #include <forward_list>
 #include <fstream>
-#include <functional>
 #include <iostream>
 #include <iterator>
 #include <list>
@@ -33,18 +32,26 @@ using std::ostream;
 using std::ostringstream;
 using std::string;
 using std::vector;
-using namespace std::placeholders;
 
-int main(int argc, char **argv) {
-    vector<int> v = {1, 2, 5, 3, 6};
-    int threshold = 6;
-    // bool check(int i, int threshold) {
-    //     return i >= threshold;
-    // }
-    auto check = [](int i, int limit) { return i >= limit; };
-    auto check_lambda = [threshold, check](int i) { return check(i, threshold); };
-    auto check_bind = std::bind(check, _1, threshold);
+void print(const string msg, vector<string>& v) {
+    cout << (msg) << " ";
+    cout << "(" << v.size() << ")";
+    for (auto& s : v) {
+        cout << (s) << " ";
+    }
+    cout << endl;
+}
 
-    auto p_larger = std::find_if(v.begin(), v.end(), check_bind);
-    cout << (*p_larger) << endl;
+void dedup(vector<string>& v) {
+    std::sort(v.begin(), v.end());
+    print("sorted: ", v);
+    vector<string>::iterator after = std::unique(v.begin(), v.end());
+    print("unique: ", v);
+    v.erase(after, v.end());
+    print("erase: ", v);
+}
+
+int main(int argc, char** argv) {
+    vector<string> v = {"the", "quick", "red", "fox", "jumps", "over", "the", "slow", "red", "turtle"};
+    dedup(v);
 }

@@ -17,6 +17,7 @@ using std::array;
 using std::begin;
 using std::cerr;
 using std::cin;
+using std::copy;
 using std::cout;
 using std::deque;
 using std::end;
@@ -31,20 +32,20 @@ using std::list;
 using std::ofstream;
 using std::ostream;
 using std::ostringstream;
+using std::sort;
+using std::stable_sort;
 using std::string;
+using std::unique;
 using std::vector;
 using namespace std::placeholders;
 
-int main(int argc, char **argv) {
-    vector<int> v = {1, 2, 5, 3, 6};
-    int threshold = 6;
-    // bool check(int i, int threshold) {
-    //     return i >= threshold;
-    // }
-    auto check = [](int i, int limit) { return i >= limit; };
-    auto check_lambda = [threshold, check](int i) { return check(i, threshold); };
-    auto check_bind = std::bind(check, _1, threshold);
+bool small(string& s, int sz) {
+    return s.size() <= sz;
+}
 
-    auto p_larger = std::find_if(v.begin(), v.end(), check_bind);
-    cout << (*p_larger) << endl;
+int main(int argc, char** argv) {
+    vector<string> v = {"aaa", "aaaqaaaa", "a", "aaaaaaaa", "aaaaaaaaa"};
+    int sz = 6;
+    auto c = std::count_if(v.begin(), v.end(), std::bind(small, _1, sz));
+    cout << (c) << endl;
 }

@@ -4,7 +4,6 @@
 #include <deque>
 #include <forward_list>
 #include <fstream>
-#include <functional>
 #include <iostream>
 #include <iterator>
 #include <list>
@@ -31,20 +30,27 @@ using std::list;
 using std::ofstream;
 using std::ostream;
 using std::ostringstream;
+using std::sort;
+using std::stable_sort;
 using std::string;
 using std::vector;
-using namespace std::placeholders;
 
-int main(int argc, char **argv) {
-    vector<int> v = {1, 2, 5, 3, 6};
-    int threshold = 6;
-    // bool check(int i, int threshold) {
-    //     return i >= threshold;
-    // }
-    auto check = [](int i, int limit) { return i >= limit; };
-    auto check_lambda = [threshold, check](int i) { return check(i, threshold); };
-    auto check_bind = std::bind(check, _1, threshold);
+class Sales_data {
+   public:
+    Sales_data(string isbn) : isbn(isbn) {}
+    string isbn;
+};
 
-    auto p_larger = std::find_if(v.begin(), v.end(), check_bind);
-    cout << (*p_larger) << endl;
+bool compareIsbn(Sales_data& a, Sales_data& b) {
+    return a.isbn < b.isbn;
+}
+
+int main(int argc, char** argv) {
+    vector<Sales_data> v = {Sales_data("456"),
+                            Sales_data("789"),
+                            Sales_data("123")};
+    sort(v.begin(), v.end(), compareIsbn);
+    for (auto& sd : v) {
+        cout << (sd.isbn) << endl;
+    }
 }

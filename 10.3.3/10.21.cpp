@@ -4,7 +4,6 @@
 #include <deque>
 #include <forward_list>
 #include <fstream>
-#include <functional>
 #include <iostream>
 #include <iterator>
 #include <list>
@@ -17,6 +16,7 @@ using std::array;
 using std::begin;
 using std::cerr;
 using std::cin;
+using std::copy;
 using std::cout;
 using std::deque;
 using std::end;
@@ -31,20 +31,20 @@ using std::list;
 using std::ofstream;
 using std::ostream;
 using std::ostringstream;
+using std::sort;
+using std::stable_sort;
 using std::string;
+using std::unique;
 using std::vector;
-using namespace std::placeholders;
 
 int main(int argc, char **argv) {
-    vector<int> v = {1, 2, 5, 3, 6};
-    int threshold = 6;
-    // bool check(int i, int threshold) {
-    //     return i >= threshold;
-    // }
-    auto check = [](int i, int limit) { return i >= limit; };
-    auto check_lambda = [threshold, check](int i) { return check(i, threshold); };
-    auto check_bind = std::bind(check, _1, threshold);
+    int i = 5;
+    auto de = [i]() mutable -> bool {
+        if(i==0) return true;
+        i--;
+        return false; };
 
-    auto p_larger = std::find_if(v.begin(), v.end(), check_bind);
-    cout << (*p_larger) << endl;
+    for (int i = 0; i < 10; i++) {
+        cout << (i) << " " << de() << endl;
+    }
 }
