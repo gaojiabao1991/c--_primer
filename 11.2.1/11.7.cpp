@@ -13,6 +13,7 @@
 #include <set>
 #include <sstream>
 #include <string>
+#include <utility>
 #include <vector>
 
 using std::array;
@@ -39,6 +40,7 @@ using std::ofstream;
 using std::ostream;
 using std::ostream_iterator;
 using std::ostringstream;
+using std::pair;
 using std::set;
 using std::sort;
 using std::stable_sort;
@@ -48,16 +50,16 @@ using std::vector;
 using namespace std::placeholders;
 
 int main(int argc, char **argv) {
-    map<string, vector<string>> famis;
-    vector<string> gao = {"Gao1", "Gao2", "Gao3"};
-    vector<string> li = {"Li1", "Li2", "Li3"};
+    map<string, vector<pair<string, int>>> famis;
+    vector<pair<string, int>> gao = {{"Gao1", 1952}, {"Gao2", 1987}, {"Gao3", 1991}};
+    vector<pair<string, int>> li = {{"Li1", 1952}, {"Li2", 1987}, {"Li3", 1991}};
     famis["Gao"] = gao;
     famis["Li"] = li;
 
     for (auto &fami : famis) {
         cout << "=====" << (fami.first) << "=====" << endl;
-        for (auto &name : fami.second) {
-            cout << (name) << endl;
+        for (auto &person : fami.second) {
+            cout << (person.first) << " " << (person.second) << endl;
         }
     }
 }
