@@ -26,7 +26,6 @@ using std::deque;
 using std::end;
 using std::endl;
 using std::ends;
-using std::find;
 using std::forward_list;
 using std::front_inserter;
 using std::ifstream;
@@ -48,14 +47,28 @@ using std::unique;
 using std::vector;
 using namespace std::placeholders;
 
-int main(int argc, char **argv) {
-    set<string> s;
-    for (int i = 'z'; i >= 'a'; i--) {
-        s.insert(string(1, static_cast<char>(i)));
+void to_alnum(string &word) {
+    //只保留数字字幕
+    auto end = std::remove_if(word.begin(), word.end(), [](char c) { return not isalnum(c); });
+    //to lower case
+    for (auto &c : word) {
+        c = tolower(c);
     }
+    word.erase(end, word.end());
+}
 
-    cout << (s.size()) << endl;
-    for (auto &str : s) {
-        cout << (str) << endl;
+int main(int argc, char **argv) {
+    set<string> excludes = {"include"};
+
+    map<string, size_t> m;
+    string word;
+    while (cin >> word) {
+        to_alnum(word);
+
+        if (word.size() == 0 or excludes.find(word) != excludes.end()) continue;
+        m[word]++;
+    }
+    for (auto &w : m) {
+        cout << (w.first) << " " << w.second << endl;
     }
 }

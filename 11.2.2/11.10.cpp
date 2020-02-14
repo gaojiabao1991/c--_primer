@@ -49,13 +49,15 @@ using std::vector;
 using namespace std::placeholders;
 
 int main(int argc, char **argv) {
-    set<string> s;
-    for (int i = 'z'; i >= 'a'; i--) {
-        s.insert(string(1, static_cast<char>(i)));
+    map<vector<int>::iterator, int> m1; //OK, vector的迭代器可以比较大小
+    // map<list<int>::iterator, int> m1; //NOT OK, list的迭代器不能比较大小
+    vector<int> v = {1, 2, 3, 4, 5};
+    for (auto b = v.begin(); b != v.end(); b++) {
+        m1[b] = *b;
     }
 
-    cout << (s.size()) << endl;
-    for (auto &str : s) {
-        cout << (str) << endl;
+    for (auto &e : m1) {
+        cout << e.second << endl;
     }
+
 }

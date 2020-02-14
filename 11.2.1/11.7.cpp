@@ -26,7 +26,6 @@ using std::deque;
 using std::end;
 using std::endl;
 using std::ends;
-using std::find;
 using std::forward_list;
 using std::front_inserter;
 using std::ifstream;
@@ -49,13 +48,16 @@ using std::vector;
 using namespace std::placeholders;
 
 int main(int argc, char **argv) {
-    set<string> s;
-    for (int i = 'z'; i >= 'a'; i--) {
-        s.insert(string(1, static_cast<char>(i)));
-    }
+    map<string, vector<string>> famis;
+    vector<string> gao = {"Gao1", "Gao2", "Gao3"};
+    vector<string> li = {"Li1", "Li2", "Li3"};
+    famis["Gao"] = gao;
+    famis["Li"] = li;
 
-    cout << (s.size()) << endl;
-    for (auto &str : s) {
-        cout << (str) << endl;
+    for (auto &fami : famis) {
+        cout << "=====" << (fami.first) << "=====" << endl;
+        for (auto &name : fami.second) {
+            cout << (name) << endl;
+        }
     }
 }
