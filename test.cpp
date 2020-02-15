@@ -49,13 +49,8 @@ using std::vector;
 using namespace std::placeholders;
 
 int main(int argc, char **argv) {
-    set<string> s;
-    for (int i = 'z'; i >= 'a'; i--) {
-        s.insert(string(1, static_cast<char>(i)));
-    }
+    vector<int> v;
+    v[0] = 1; //ERROR
 
-    cout << (s.size()) << endl;
-    for (auto &str : s) {
-        cout << (str) << endl;
-    }
+    cout << (v[0]) <<endl;
 }
