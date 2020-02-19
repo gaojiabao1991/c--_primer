@@ -49,8 +49,9 @@ using std::vector;
 using namespace std::placeholders;
 
 int main(int argc, char **argv) {
-    vector<int> v;
-    v[0] = 1; //ERROR
+    int a[1922560];
+    cout << (sizeof(a) / sizeof(a[0])) << endl;
+    // for (int i = 0; i < a.length; i++) {
 
-    cout << (v[0]) <<endl;
+    // }
 }

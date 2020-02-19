@@ -2,8 +2,12 @@ set -u
 set -e
 
 DIR=$1
-FILE=$2
-
 mkdir -p $DIR
 
-touch $DIR/$FILE.cpp
+for ((i = 2; i <= $#; i++ )); do
+    FILE=${!i}
+    echo "$FILE.cpp created"
+    touch $DIR/$FILE.cpp
+done
+
+
