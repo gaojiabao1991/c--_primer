@@ -48,10 +48,15 @@ using std::unique;
 using std::vector;
 using namespace std::placeholders;
 
-int main(int argc, char **argv) {
-    int a[1922560];
-    cout << (sizeof(a) / sizeof(a[0])) << endl;
-    // for (int i = 0; i < a.length; i++) {
+int main(int argc, char** argv) {
+    const char* str1 = "abc";
+    const char* str2 = "def";
 
-    // }
+    char* s3 = new char[strlen(str1) + strlen(str2) + 1];
+    strcat(s3, str1);
+    strcat(s3, str2);
+
+    cout << (strlen(s3)) <<endl;
+
+    
 }
