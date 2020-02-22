@@ -47,6 +47,7 @@ using std::ostream;
 using std::ostream_iterator;
 using std::ostringstream;
 using std::pair;
+using std::runtime_error;
 using std::set;
 using std::shared_ptr;
 using std::sort;
@@ -57,7 +58,6 @@ using std::unordered_map;
 using std::unordered_set;
 using std::vector;
 using std::weak_ptr;
-using std::runtime_error;
 using namespace std::placeholders;
 
 class StrBlobPtr;
@@ -101,6 +101,7 @@ class StrBlobPtr {
     StrBlobPtr(const StrBlob& blob, size_type idx) : data(blob.data), cur(idx) {}
     string& deref() const;
     StrBlobPtr& inc();
+    StrBlobPtr& advance(size_type inc);
 
    private:
     shared_ptr<vector<string>> check(size_type idx) const;
@@ -127,6 +128,12 @@ string& StrBlobPtr::deref() const {
 StrBlobPtr& StrBlobPtr::inc() {
     check(cur);
     cur++;
+    return *this;
+}
+
+StrBlobPtr& StrBlobPtr::advance(size_type inc) {
+    check(cur);
+    cur += inc;
     return *this;
 }
 
@@ -164,10 +171,10 @@ StrBlobPtr StrBlob::end() {
     return StrBlobPtr(*this, data->size());
 }
 
-const StrBlobPtr StrBlob::begin() const{
+const StrBlobPtr StrBlob::begin() const {
     return StrBlobPtr(*this, 0);
 }
 
-const StrBlobPtr StrBlob::end() const{
+const StrBlobPtr StrBlob::end() const {
     return StrBlobPtr(*this, data->size());
 }
