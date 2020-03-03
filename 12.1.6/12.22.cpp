@@ -71,7 +71,13 @@ int main(int argc, char **argv) {
 
     StrBlobPtr b = blob.begin();
     for (int i = 0; i < blob.size(); i++) {
-        cout << (b.deref()) << endl;
+        b.deref() = "x";
         b.inc();
+    }
+
+    StrBlobPtr b2 = blob.begin();
+    for (int i = 0; i < blob.size(); i++) {
+        cout << (b2.deref()) << endl;
+        b2.inc();
     }
 }

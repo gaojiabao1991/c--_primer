@@ -6,8 +6,8 @@ mkdir -p $DIR
 
 for ((i = 2; i <= $#; i++ )); do
     FILE=${!i}
-    echo "$FILE.cpp created"
-    touch $DIR/$FILE.cpp
+    echo "$FILE created"
+    touch $DIR/$FILE
 done
 
 
