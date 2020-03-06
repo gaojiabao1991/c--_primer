@@ -117,6 +117,11 @@ class StrVec {
         elements = data.first;
         first_free = cap = data.second;
     }
+    
+    ~StrVec() {
+        free();
+    }
+
     StrVec& operator=(StrVec& cp) {
         auto data = copy_from(cp);
         free();
@@ -124,8 +129,9 @@ class StrVec {
         first_free = cap = data.second;
         return *this;
     }
-    ~StrVec() {
-        free();
+
+    const string& operator[](size_t i) {
+        return *(elements + i);
     }
 
     void push_back(const string& s) {
@@ -176,9 +182,9 @@ class StrVec {
         return first_free;
     }
 
-    const string& get(size_t i) {
-        return *(elements + i);
-    }
+    // const string& get(size_t i) {
+    //     return *(elements + i);
+    // }
 };
 
 allocator<string> StrVec::alloc = allocator<string>();

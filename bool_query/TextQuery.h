@@ -82,6 +82,13 @@ class QueryResult {
    public:
     QueryResult(shared_ptr<set<int>> idx, shared_ptr<StrVec> lines) : idx(idx), lines(lines) {}
     void print();
+    shared_ptr<StrVec> get_lines() {
+        return lines;
+    }
+
+    shared_ptr<set<int>> get_idx(){
+        return idx;
+    }
 
    private:
     const shared_ptr<set<int>> idx;
@@ -99,7 +106,7 @@ void QueryResult::print() {
     int show_num = 0;
     const int max_show = 5;
     for (auto& i : *idx) {
-        cout << show_num + 1 << ") line " << (i + 1) << " , " << lines->get(i) << endl;
+        cout << show_num + 1 << ") line " << (i + 1) << " , " << (*lines)[i] << endl;
         if (++show_num == max_show) {
             break;
         }

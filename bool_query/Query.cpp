@@ -95,7 +95,16 @@ class NotQuery : public BaseQuery {
     NotQuery(shared_ptr<BaseQuery> bq) : bq(bq) {}
 
     QueryResult eval(const TextQuery& tq) const override {
-        //TODO
+        auto rs = bq->eval(tq);
+        size_t line_num = rs.get_lines()->size();
+        shared_ptr<set<int>> idx = make_shared<set<int>>();
+
+        auto skip_idx = rs.get_idx();
+        for (int i = 0; i < line_num; i++) {
+            if (skip_idx->find(i) == skip_idx->end()) idx->insert(i);
+        }
+
+        return QueryResult(idx, rs.get_lines());
     }
 
     string rep() const override {
@@ -117,7 +126,12 @@ class AndQuery : public BinaryQuery {
     AndQuery(shared_ptr<BaseQuery> l, shared_ptr<BaseQuery> r) : BinaryQuery(l, r) {}
 
     QueryResult eval(const TextQuery& tq) const override {
-        //TODO
+        auto lrs = l->eval(tq), rrs = r->eval(tq);
+        auto lidx = lrs.get_idx(), ridx = rrs.get_idx();
+
+        shared_ptr<set<int>> idx = make_shared<set<int>>();
+        std::set_intersection(lidx->begin(), lidx->end(), ridx->begin(), ridx->end(), inserter(*idx, idx->begin()));
+        return QueryResult(idx, lrs.get_lines());
     }
 
     string rep() const override {
@@ -130,7 +144,12 @@ class OrQuery : public BinaryQuery {
     OrQuery(shared_ptr<BaseQuery> l, shared_ptr<BaseQuery> r) : BinaryQuery(l, r) {}
 
     QueryResult eval(const TextQuery& tq) const override {
-        //TODO
+        auto lrs = l->eval(tq), rrs = r->eval(tq);
+        auto lidx = lrs.get_idx(), ridx = rrs.get_idx();
+
+        shared_ptr<set<int>> idx = make_shared<set<int>>();
+        std::set_union(lidx->begin(), lidx->end(), ridx->begin(), ridx->end(), inserter(*idx, idx->begin()));
+        return QueryResult(idx, lrs.get_lines());
     }
 
     string rep() const override {
@@ -173,23 +192,49 @@ ostream& operator<<(ostream& os, const Query query) {
 }
 
 int main(int argc, char** argv) {
-    // ifstream ifs("story.txt");
-    // TextQuery tq(ifs);
+    ifstream ifs("story.txt");
+    TextQuery tq(ifs);
     // QueryResult rs = tq.query("bird");
     // rs.print();
 
-    Query q("abc");
+    Query q("bird");
     cout << (q) << endl;
+    q.eval(tq).print();
+
+    cout << ("=====") << endl;
 
     Query nq = ~q;
     cout << (nq) << endl;
+    nq.eval(tq).print();
 
-    Query andq = q & nq;
+    cout << ("=====") << endl;
+
+    Query q2("beautiful");
+    Query andq = q & q2;
     cout << (andq) << endl;
+    andq.eval(tq).print();
 
-    Query orq = q | nq;
+    cout << ("=====") << endl;
+    Query q3("hair");
+    cout << (q3) << endl;
+    q3.eval(tq).print();
+
+    Query orq = q | q3;
     cout << (orq) << endl;
+    orq.eval(tq).print();
 
-    Query comq = andq & orq;
-    cout << (comq) << endl;
+    // Query q("abc");
+    // cout << (q) << endl;
+
+    // Query nq = ~q;
+    // cout << (nq) << endl;
+
+    // Query andq = q & nq;
+    // cout << (andq) << endl;
+
+    // Query orq = q | nq;
+    // cout << (orq) << endl;
+
+    // Query comq = andq & orq;
+    // cout << (comq) << endl;
 }
