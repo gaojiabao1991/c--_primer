@@ -64,12 +64,17 @@ using std::vector;
 using std::weak_ptr;
 using namespace std::placeholders;
 
-void fn(initializer_list<string> il) {
-    for (auto &s : il) {
-        cout << (s) << endl;
+class A {
+   protected:
+    size_t p = 42;
+};
+
+class B : A {
+    void fn(A a) {
+        cout << (a.p) << endl;
     }
-}
+};
 
 int main(int argc, char **argv) {
-    fn({"abc", "def", "xyz"});
+    
 }

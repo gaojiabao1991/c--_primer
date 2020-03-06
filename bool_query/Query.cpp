@@ -65,10 +65,16 @@ using std::vector;
 using std::weak_ptr;
 using namespace std::placeholders;
 
+/**
+ * 反思:1. 继承体系里的父类要定义virtual的析构函数
+ **/
+
 class BaseQuery {
     friend class Query;
 
    public:
+    virtual ~BaseQuery() = default;
+
     virtual QueryResult eval(const TextQuery& tq) const = 0;
     virtual string rep() const = 0;
 };
@@ -108,7 +114,7 @@ class NotQuery : public BaseQuery {
     }
 
     string rep() const override {
-        return "~(" + bq->rep() + ")";
+        return "~" + bq->rep();
     }
 };
 
@@ -135,7 +141,7 @@ class AndQuery : public BinaryQuery {
     }
 
     string rep() const override {
-        return "(" + l->rep() + ")" + " & " + "(" + r->rep() + ")";
+        return "(" + l->rep() + " & " + r->rep() + ")";
     }
 };
 
@@ -153,7 +159,7 @@ class OrQuery : public BinaryQuery {
     }
 
     string rep() const override {
-        return "(" + l->rep() + ")" + " | " + "(" + r->rep() + ")";
+        return "(" + l->rep() + " | " + r->rep() + ")";
     }
 };
 
@@ -191,11 +197,9 @@ ostream& operator<<(ostream& os, const Query query) {
     return os;
 }
 
-int main(int argc, char** argv) {
+void test1() {
     ifstream ifs("story.txt");
     TextQuery tq(ifs);
-    // QueryResult rs = tq.query("bird");
-    // rs.print();
 
     Query q("bird");
     cout << (q) << endl;
@@ -223,18 +227,21 @@ int main(int argc, char** argv) {
     cout << (orq) << endl;
     orq.eval(tq).print();
 
-    // Query q("abc");
-    // cout << (q) << endl;
+    Query q4("a");
+    Query comq = orq & q4;
+    cout << (comq) << endl;
+    comq.eval(tq).print();
+}
 
-    // Query nq = ~q;
-    // cout << (nq) << endl;
+int main(int argc, char** argv) {
+    // test1();
 
-    // Query andq = q & nq;
-    // cout << (andq) << endl;
+    Query q = Query("aa") | Query("b") & ~Query("c");
+    cout << (q) << endl;
 
-    // Query orq = q | nq;
-    // cout << (orq) << endl;
+    q = Query("aa") | (Query("b") & ~Query("c"));
+    cout << (q) << endl;
 
-    // Query comq = andq & orq;
-    // cout << (comq) << endl;
+    q = (Query("a") & (Query("b")) | (Query("c") & Query("d")));
+    cout << (q) << endl;
 }
