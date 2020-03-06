@@ -64,27 +64,12 @@ using std::vector;
 using std::weak_ptr;
 using namespace std::placeholders;
 
-class Base {
-    string real_name;
-
-   public:
-    Base() {
-        real_name = get_name();
+void fn(initializer_list<string> il) {
+    for (auto &s : il) {
+        cout << (s) << endl;
     }
-
-    string get_real_name() {
-        return real_name;
-    }
-
-    virtual string get_name() { return "base"; }
-};
-
-class Derived : public Base {
-   public:
-    string get_name() override { return "derived"; }
-};
+}
 
 int main(int argc, char **argv) {
-    Derived d;
-    cout << (d.get_real_name()) << endl;
+    fn({"abc", "def", "xyz"});
 }
