@@ -58,7 +58,5 @@ class Screen {
     pos ht = 0;
     string content;
 
-    void do_display(ostream& os) const {
-        os << content;
-    }
+    void do_display(ostream& os) const { os << content; }
 };
