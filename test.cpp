@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <array>
+#include <bitset>
 #include <cstring>
 #include <deque>
 #include <forward_list>
@@ -11,6 +12,7 @@
 #include <map>
 #include <memory>
 #include <numeric>
+#include <regex>
 #include <set>
 #include <sstream>
 #include <string>
@@ -22,6 +24,7 @@ using std::allocator;
 using std::array;
 using std::back_inserter;
 using std::begin;
+using std::bitset;
 using std::cerr;
 using std::cin;
 using std::copy;
@@ -33,6 +36,8 @@ using std::ends;
 using std::find;
 using std::forward_list;
 using std::front_inserter;
+using std::function;
+using std::get;
 using std::getline;
 using std::ifstream;
 using std::initializer_list;
@@ -40,7 +45,9 @@ using std::istream;
 using std::istream_iterator;
 using std::istringstream;
 using std::list;
+using std::make_pair;
 using std::make_shared;
+using std::make_tuple;
 using std::map;
 using std::multimap;
 using std::multiset;
@@ -56,6 +63,7 @@ using std::sort;
 using std::stable_sort;
 using std::string;
 using std::stringstream;
+using std::tuple;
 using std::unique;
 using std::unique_ptr;
 using std::unordered_map;
@@ -64,17 +72,15 @@ using std::vector;
 using std::weak_ptr;
 using namespace std::placeholders;
 
-class A {
-   protected:
-    size_t p = 42;
-};
-
-class B : A {
-    void fn(A a) {
-        cout << (a.p) << endl;
-    }
-};
-
 int main(int argc, char **argv) {
-    
+    string pattern("[^c]ei");
+    pattern = "\\S*" + pattern + "\\S*";
+
+    std::regex r(pattern);
+    std::smatch results;
+    string test_str = "receipt freind theif receive";
+
+    if (std::regex_search(test_str, results, r)) {
+        cout << (results.str()) << endl;
+    }
 }

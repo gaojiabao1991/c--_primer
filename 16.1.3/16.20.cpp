@@ -65,8 +65,7 @@ using std::weak_ptr;
 using namespace std::placeholders;
 
 template <typename C> void print(const C& c) {
-    
-    for (auto b = c.begin();b!=c.end();++b) {
+    for (auto b = c.begin(); b != c.end(); ++b) {
         cout << (*b) << endl;
     }
 }
